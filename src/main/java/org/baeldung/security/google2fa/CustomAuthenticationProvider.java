@@ -1,6 +1,9 @@
-package org.baeldung.config.google2fa;
+package org.baeldung.security.google2fa;
 
+import org.baeldung.persistence.dao.UserRepository;
 import org.baeldung.persistence.model.User;
+import org.jboss.aerogear.security.otp.Totp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -12,63 +15,29 @@ import org.springframework.util.Assert;
 
 //@Component
 public class CustomAuthenticationProvider extends DaoAuthenticationProvider {
-/*
+
     @Autowired
-    private UserRepository userRepository;*/
-
-
-    public Authentication someAuthenticate(Authentication authentication)
-            throws AuthenticationException {
-        Assert.isInstanceOf(UsernamePasswordAuthenticationToken.class, authentication,
-                messages.getMessage(
-                        "AbstractUserDetailsAuthenticationProvider.onlySupports",
-                        "Only UsernamePasswordAuthenticationToken is supported"));
-
-        // Determine username
-        String username = (authentication.getPrincipal() == null) ? "NONE_PROVIDED"
-                : authentication.getName();
-
-        UserDetails user = null;
-
-        try {
-            user = retrieveUser(username,
-                    (UsernamePasswordAuthenticationToken) authentication);
-        } catch (UsernameNotFoundException notFound) {
-            logger.debug("User '" + username + "' not found");
-
-            if (hideUserNotFoundExceptions) {
-                throw new BadCredentialsException(messages.getMessage(
-                        "AbstractUserDetailsAuthenticationProvider.badCredentials",
-                        "Bad credentials"));
-            } else {
-                throw notFound;
-            }
-        }
-
-
-        Object principalToReturn = user;
-
-        return createSuccessAuthentication(principalToReturn, authentication, user);
-    }
+    private UserRepository userRepository;
 
 
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
-
-        final User user = new User();
-        user.setEmail("test@t.com");
-        user.setPassword("test");
-        user.setEnabled(true);
-
-
+        //final String verificationCode = ((CustomWebAuthenticationDetails) auth.getDetails()).getVerificationCode();
+        final User user = userRepository.findByEmail(auth.getName());
         if ((user == null)) {
             throw new BadCredentialsException("Invalid username or password");
         }
+        // to verify verification code
+       /* if (user.isUsing2FA()) {
+            final Totp totp = new Totp(user.getSecret());
+            if (!isValidLong(verificationCode) || !totp.verify(verificationCode)) {
+                throw new BadCredentialsException("Invalid verfication code");
+            }
 
-        final Authentication result = someAuthenticate(auth);
+        }*/
+        final Authentication result = super.authenticate(auth);
         return new UsernamePasswordAuthenticationToken(user, result.getCredentials(), result.getAuthorities());
     }
-
 
     private boolean isValidLong(String code) {
         try {

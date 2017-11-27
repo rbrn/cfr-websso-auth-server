@@ -1,5 +1,6 @@
-package org.baeldung.config.service;
+package org.baeldung.service;
 
+import org.baeldung.persistence.dao.UserRepository;
 import org.baeldung.persistence.model.Privilege;
 import org.baeldung.persistence.model.Role;
 import org.baeldung.persistence.model.User;
@@ -23,27 +24,27 @@ public class MyUserDetailsService implements UserDetailsService {
 
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private HttpServletRequest request;
 
     public MyUserDetailsService() {
         super();
     }
 
-    // API
-
     @Override
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
+        final String ip = getClientIP();
+
+
         try {
-            final User user = new User();
-            user.setEmail("test@t.com");
-            user.setPassword("test");
-            user.setEnabled(true);
+            final User user = userRepository.findByEmail(email);
             if (user == null) {
                 throw new UsernameNotFoundException("No user found with username: " + email);
             }
 
-            return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true,
-                    getAuthorities(user.getRoles()));
+            return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, getAuthorities(user.getRoles()));
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }

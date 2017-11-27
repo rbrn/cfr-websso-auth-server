@@ -1,4 +1,4 @@
-package org.baeldung.config.google2fa;
+package org.baeldung.security.google2fa;
 
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 

@@ -1,5 +1,6 @@
 package org.baeldung.spring;
 
+import org.baeldung.config.PersistenceJPAConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,8 @@ public class TestDbConfig extends PersistenceJPAConfig {
 
     @Override
     public DataSource dataSource() {
-        EmbeddedDatabase datasource = new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
+        EmbeddedDatabase datasource = new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2).build();
         return datasource;
     }
 

@@ -1,4 +1,4 @@
-package org.baeldung.config;
+package org.baeldung.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

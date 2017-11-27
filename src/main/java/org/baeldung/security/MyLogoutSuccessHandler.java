@@ -1,4 +1,4 @@
-package org.baeldung.config;
+package org.baeldung.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;

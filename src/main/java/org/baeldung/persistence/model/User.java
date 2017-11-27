@@ -1,4 +1,4 @@
-package org.baeldung.persistance.model;
+package org.baeldung.persistence.model;
 
 import org.jboss.aerogear.security.otp.api.Base32;
 

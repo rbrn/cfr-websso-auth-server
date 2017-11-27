@@ -1,4 +1,4 @@
-package org.baeldung.test;
+package org.baeldung;
 
 import org.baeldung.config.ServiceConfig;
 import org.baeldung.persistence.dao.UserRepository;

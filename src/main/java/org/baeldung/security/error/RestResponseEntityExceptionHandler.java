@@ -1,6 +1,6 @@
-package org.baeldung.config.error;
+package org.baeldung.security.error;
 
-import org.baeldung.config.util.GenericResponse;
+import org.baeldung.security.util.GenericResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;

@@ -1,7 +1,7 @@
-package org.baeldung.persistance.dao;
+package org.baeldung.persistence.dao;
 
-import org.baeldung.persistance.model.VerificationToken;
-import org.baeldung.persistance.model.User;
+import org.baeldung.persistence.model.VerificationToken;
+import org.baeldung.persistence.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

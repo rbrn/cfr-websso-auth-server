@@ -1,4 +1,4 @@
-package web;
+package org.baeldung.web;
 
 import java.security.Principal;
 

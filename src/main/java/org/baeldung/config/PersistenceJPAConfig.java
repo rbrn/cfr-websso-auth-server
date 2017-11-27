@@ -1,8 +1,4 @@
-package org.baeldung.spring;
-
-import java.util.Properties;
-
-import javax.sql.DataSource;
+package org.baeldung.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,10 +14,13 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.sql.DataSource;
+import java.util.Properties;
+
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:persistence.properties" })
-@ComponentScan({ "org.baeldung.persistence" })
+@ComponentScan({"org.baeldung.persistence"})
 @EnableJpaRepositories(basePackages = "org.baeldung.persistence.dao")
 public class PersistenceJPAConfig {
 

@@ -1,6 +1,5 @@
-package org.baeldung.config;
+package org.baeldung.security;
 
-import org.baeldung.security.ActiveUserStore;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSessionBindingEvent;

@@ -1,4 +1,4 @@
-package org.baeldung.security.dto;
+package org.baeldung.persistence.dto;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

@@ -1,4 +1,4 @@
-package org.baeldung.spring;
+package org.baeldung.config;
 
 import org.baeldung.security.ActiveUserStore;
 import org.springframework.context.annotation.Bean;

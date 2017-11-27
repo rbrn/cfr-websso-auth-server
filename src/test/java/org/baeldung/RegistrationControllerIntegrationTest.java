@@ -1,10 +1,12 @@
-package org.baeldung.test;
+package org.baeldung;
 
-import org.baeldung.Application;
+import org.baeldung.config.PersistenceJPAConfig;
+import org.baeldung.persistence.dto.UserDto;
 import org.baeldung.persistence.model.User;
 import org.baeldung.persistence.model.VerificationToken;
 import org.baeldung.spring.TestDbConfig;
 import org.baeldung.spring.TestIntegrationConfig;
+import org.baeldung.web.RegistrationController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,10 +28,11 @@ import java.util.Date;
 import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { Application.class, TestDbConfig.class, TestIntegrationConfig.class }, webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = { Application.class, PersistenceJPAConfig.class, TestIntegrationConfig.class }, webEnvironment = WebEnvironment.RANDOM_PORT)
 @Transactional
 public class RegistrationControllerIntegrationTest {
 
@@ -73,4 +76,20 @@ public class RegistrationControllerIntegrationTest {
         resultActions.andExpect(model().attribute("message", "Your account verified successfully"));
         resultActions.andExpect(view().name("redirect:/login?lang=en"));
     }
+
+    @Autowired
+    private RegistrationController registrationController;
+
+    @Test
+    public void testRegistration() throws Exception {
+        UserDto user = new UserDto();
+        user.setEmail("costin" + "@example.com");
+        user.setPassword("123");
+        user.setFirstName("Costin");
+        user.setLastName("Aldea");
+        user.setMatchingPassword("123");
+
+        registrationController.registerUserAccount(user);
+    }
+
 }

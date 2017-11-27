@@ -1,4 +1,4 @@
-package org.baeldung.security.dto;
+package org.baeldung.persistence.dto;
 
 public class PasswordDto {
 

@@ -1,4 +1,4 @@
-package org.baeldung.config;
+package org.baeldung.security;
 
 import java.util.ArrayList;
 import java.util.List;

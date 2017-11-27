@@ -1,4 +1,4 @@
-package org.baeldung.config.error;
+package org.baeldung.security.error;
 
 public final class ReCaptchaInvalidException extends RuntimeException {
 

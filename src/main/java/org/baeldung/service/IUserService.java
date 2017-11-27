@@ -1,7 +1,7 @@
-package org.baeldung.config.service;
+package org.baeldung.service;
 
-import org.baeldung.config.dto.UserDto;
-import org.baeldung.config.error.UserAlreadyExistException;
+import org.baeldung.persistence.dto.UserDto;
+import org.baeldung.security.error.UserAlreadyExistException;
 import org.baeldung.persistence.model.User;
 
 import java.io.UnsupportedEncodingException;

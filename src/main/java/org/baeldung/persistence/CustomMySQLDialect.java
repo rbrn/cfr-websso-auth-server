@@ -1,4 +1,4 @@
-package org.baeldung.persistance;
+package org.baeldung.persistence;
 
 import org.hibernate.dialect.MySQLDialect;
 

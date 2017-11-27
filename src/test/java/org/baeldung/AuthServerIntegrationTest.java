@@ -1,4 +1,4 @@
-package org.baeldung.test;
+package org.baeldung;
 
 import org.baeldung.config.AuthorizationServerApplication;
 import org.junit.Test;

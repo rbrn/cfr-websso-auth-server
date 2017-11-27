@@ -1,4 +1,4 @@
-package org.baeldung.test;
+package org.baeldung;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

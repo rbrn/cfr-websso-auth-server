@@ -1,14 +1,12 @@
-package org.baeldung.test;
+package org.baeldung;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ // @formatter:off 
-    ChangePasswordIntegrationTest.class, 
+@Suite.SuiteClasses({ // @formatter:off
     TokenExpirationIntegrationTest.class,
     RegistrationControllerIntegrationTest.class,
-    GetLoggedUsersIntegrationTest.class,
     UserServiceIntegrationTest.class,
     UserIntegrationTest.class,
     SpringSecurityRolesIntegrationTest.class,

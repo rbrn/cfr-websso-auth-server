@@ -1,6 +1,4 @@
-package org.baeldung.spring;
-
-import java.util.Locale;
+package org.baeldung.config;
 
 import org.baeldung.validation.EmailValidator;
 import org.baeldung.validation.PasswordMatchesValidator;
@@ -10,14 +8,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+
+import java.util.Locale;
 
 @Configuration
 @ComponentScan(basePackages = { "org.baeldung.web" })
@@ -92,7 +87,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     // }
 
     @Bean
-    public EmailValidator usernameValidator() {
+    public org.baeldung.validation.EmailValidator usernameValidator() {
         return new EmailValidator();
     }
 

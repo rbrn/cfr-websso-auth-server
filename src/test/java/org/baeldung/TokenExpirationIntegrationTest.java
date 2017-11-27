@@ -1,4 +1,4 @@
-package org.baeldung.test;
+package org.baeldung;
 
 import org.baeldung.persistence.dao.UserRepository;
 import org.baeldung.persistence.dao.VerificationTokenRepository;
@@ -6,7 +6,6 @@ import org.baeldung.persistence.model.User;
 import org.baeldung.persistence.model.VerificationToken;
 import org.baeldung.spring.TestDbConfig;
 import org.baeldung.spring.TestTaskConfig;
-import org.baeldung.task.TokensPurgeTask;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +19,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-
 import java.util.Date;
 import java.util.UUID;
 
@@ -36,9 +34,6 @@ public class TokenExpirationIntegrationTest {
 
     @Autowired
     private VerificationTokenRepository tokenRepository;
-
-    @Autowired
-    private TokensPurgeTask tokensPurgeTask;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -107,9 +102,4 @@ public class TokenExpirationIntegrationTest {
         assertEquals(0, tokenRepository.count());
     }
 
-    @Test
-    public void whenPurgeTokenTask_thenCorrect() {
-        tokensPurgeTask.purgeExpired();
-        assertNull(tokenRepository.findOne(token_id));
-    }
 }

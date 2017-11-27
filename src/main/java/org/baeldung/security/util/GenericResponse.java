@@ -1,4 +1,4 @@
-package org.baeldung.config.util;
+package org.baeldung.security.util;
 
 import org.springframework.validation.ObjectError;
 

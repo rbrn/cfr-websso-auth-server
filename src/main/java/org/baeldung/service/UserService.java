@@ -1,7 +1,7 @@
-package org.baeldung.config.service;
+package org.baeldung.service;
 
-import org.baeldung.config.dto.UserDto;
-import org.baeldung.config.error.UserAlreadyExistException;
+import org.baeldung.persistence.dto.UserDto;
+import org.baeldung.security.error.UserAlreadyExistException;
 import org.baeldung.persistence.dao.PasswordResetTokenRepository;
 import org.baeldung.persistence.dao.RoleRepository;
 import org.baeldung.persistence.dao.UserRepository;
@@ -69,6 +69,7 @@ public class UserService implements IUserService {
         user.setEmail(accountDto.getEmail());
         user.setUsing2FA(accountDto.isUsing2FA());
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
+        user.setEnabled(true);
         return repository.save(user);
     }
 

@@ -1,11 +1,11 @@
-package web;
+package org.baeldung.web;
 
-import org.baeldung.config.dto.PasswordDto;
-import org.baeldung.config.dto.UserDto;
-import org.baeldung.config.error.InvalidOldPasswordException;
+import org.baeldung.persistence.dto.PasswordDto;
+import org.baeldung.persistence.dto.UserDto;
+import org.baeldung.security.error.InvalidOldPasswordException;
 import org.baeldung.persistence.model.User;
-import org.baeldung.config.service.IUserService;
-import org.baeldung.config.util.GenericResponse;
+import org.baeldung.service.IUserService;
+import org.baeldung.security.util.GenericResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class RegistrationController {
     @Autowired
     private IUserService userService;
 
-    /*@Autowired
+/*    @Autowired
     private ISecurityUserService securityUserService;*/
 
     @Autowired
@@ -53,7 +53,7 @@ public class RegistrationController {
 
     @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
     @ResponseBody
-    public GenericResponse registerUserAccount(@Valid final UserDto accountDto, final HttpServletRequest request) {
+    public GenericResponse registerUserAccount(@Valid final UserDto accountDto) {
         LOGGER.debug("Registering user account with information: {}", accountDto);
 
         final User registered = userService.registerNewUserAccount(accountDto);
